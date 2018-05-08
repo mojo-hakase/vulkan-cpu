@@ -485,7 +485,7 @@ struct Orc_jit_stack : public Wrapper<::LLVMOrcJITStackRef, Orc_jit_stack_delete
     {
         ::LLVMOrcModuleHandle retval{};
 #if LLVM_WRAPPER_ORC_REVISION_NUMBER >= 307350
-        if(::LLVMOrcErrorSuccess
+        if(::LLVMOrcErrSuccess
            != ::LLVMOrcAddEagerlyCompiledIR(orc_jit_stack,
                                             &retval,
                                             Orc_shared_module_ref::make(std::move(module)).get(),

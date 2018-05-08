@@ -35,9 +35,9 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#if LLVM_VERSION_MAJOR != 4 || LLVM_VERSION_MINOR != 0
-#error Orc compile stack is not yet implemented for this version of LLVM
-#endif
+//#if LLVM_VERSION_MAJOR != 4 || LLVM_VERSION_MINOR != 0
+//#error Orc compile stack is not yet implemented for this version of LLVM
+//#endif
 
 namespace kazan
 {

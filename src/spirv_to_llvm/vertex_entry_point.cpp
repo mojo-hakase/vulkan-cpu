@@ -159,7 +159,7 @@ using namespace spirv;
             {
                 auto input_pointer = ::LLVMBuildStructGEP(
                     builder.get(), inputs_struct_pointer, input_member.llvm_member_index, "input");
-                ::LLVMDumpType(::LLVMTypeOf(input_pointer));
+                //::LLVMDumpType(::LLVMTypeOf(input_pointer));
                 util::optional<Built_in> built_in;
                 util::optional<std::uint32_t> location;
                 static_cast<void>(input_pointer);

@@ -543,8 +543,7 @@ struct Enum_map_base
         }
     }
     Enum_map_base &operator=(const Enum_map_base &rt) noexcept(
-        noexcept(new(std::declval<void *>()) T(std::declval<const T &>()))
-        && noexcept(std::declval<T &>() = std::declval<const T &>()))
+        noexcept(new(std::declval<void *>()) T(std::declval<const T &>())))
     {
         auto either_full = full_entries | rt.full_entries;
         for(std::size_t index = either_full.find_first(true); index != Bits::npos;
@@ -559,8 +558,7 @@ struct Enum_map_base
         return *this;
     }
     Enum_map_base &operator=(Enum_map_base &&rt) noexcept(
-        noexcept(new(std::declval<void *>()) T(std::declval<T &&>()))
-        && noexcept(std::declval<T &>() = std::declval<T &&>()))
+        noexcept(new(std::declval<void *>()) T(std::declval<T &&>())))
     {
         auto either_full = full_entries | rt.full_entries;
         for(std::size_t index = either_full.find_first(true); index != Bits::npos;
@@ -646,7 +644,7 @@ struct Enum_map_base<T, Entry_count, true, false>
     }
     Enum_map_base &operator=(const Enum_map_base &rt) noexcept(
         noexcept(new(std::declval<void *>()) T(std::declval<const T &>()))
-        && noexcept(std::declval<T &>() = std::declval<const T &>()))
+        )
     {
         auto either_full = full_entries | rt.full_entries;
         for(std::size_t index = either_full.find_first(true); index != Bits::npos;
@@ -661,8 +659,7 @@ struct Enum_map_base<T, Entry_count, true, false>
         return *this;
     }
     Enum_map_base &operator=(Enum_map_base &&rt) noexcept(
-        noexcept(new(std::declval<void *>()) T(std::declval<T &&>()))
-        && noexcept(std::declval<T &>() = std::declval<T &&>()))
+        noexcept(new(std::declval<void *>()) T(std::declval<T &&>())))
     {
         auto either_full = full_entries | rt.full_entries;
         for(std::size_t index = either_full.find_first(true); index != Bits::npos;
@@ -717,8 +714,8 @@ struct Enum_map_base<T, Entry_count, true, true>
     }
     constexpr Enum_map_base(const Enum_map_base &rt) noexcept = default;
     constexpr Enum_map_base(Enum_map_base &&rt) noexcept = default;
-    constexpr Enum_map_base &operator=(const Enum_map_base &rt) noexcept = default;
-    constexpr Enum_map_base &operator=(Enum_map_base &&rt) noexcept = default;
+    constexpr Enum_map_base &operator=(const Enum_map_base &rt) = default;
+    constexpr Enum_map_base &operator=(Enum_map_base &&rt) = default;
     constexpr void clear() noexcept
     {
         for(std::size_t index = full_entries.find_first(true); index != Bits::npos;
@@ -760,10 +757,8 @@ public:
     constexpr Enum_map(const Enum_map &) noexcept(noexcept(Base(std::declval<const Base &>()))) =
         default;
     constexpr Enum_map(Enum_map &&) noexcept(noexcept(Base(std::declval<Base &&>()))) = default;
-    constexpr Enum_map &operator=(const Enum_map &) noexcept(
-        noexcept(std::declval<Base &>() = std::declval<const Base &>())) = default;
-    constexpr Enum_map &operator=(Enum_map &&) noexcept(
-        noexcept(std::declval<Base &>() = std::declval<Base &&>())) = default;
+    constexpr Enum_map &operator=(const Enum_map &) = default;
+    constexpr Enum_map &operator=(Enum_map &&) = default;
     constexpr void clear() noexcept
     {
         Base::clear();
